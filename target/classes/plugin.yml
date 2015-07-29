@@ -1,0 +1,25 @@
+name: ChatFilter
+version: 1.0
+main: com.github.mcvier3ck.chatfilter.ChatFilterMain
+author: McVier3ck
+website: https://github.com/McVier3ck
+
+commands:
+  chatfilter:
+
+permissions:
+  chatfilter.*:
+    children:
+      chatfilter.add: true
+      chatfilter.remove: true
+      chatfilter.list: true
+      chatfilter.morewords: true
+  chatfilter.add:
+    default: op
+  chatfilter.remove:
+    default: op
+  chatfilter.list:
+    default: op
+  chatfilter.morewords:
+    default: op
+

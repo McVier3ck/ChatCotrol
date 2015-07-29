@@ -1,0 +1,5 @@
+com\github\mcvier3ck\command\Commands.class
+com\github\mcvier3ck\utils\PermissonsInteract.class
+com\github\mcvier3ck\utils\MySQL.class
+com\github\mcvier3ck\listener\ChatListener.class
+com\github\mcvier3ck\chatfilter\ChatFilterMain.class
