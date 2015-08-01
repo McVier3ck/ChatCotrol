@@ -9,7 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import com.github.mcvier3ck.chatfilter.ChatFilterMain;
+import com.github.mcvier3ck.chatcontrol.ChatControlMain;
+import com.github.mcvier3ck.utils.PermissonsInteract;
 
 public class ChatListener implements Listener{
 
@@ -22,7 +23,7 @@ public class ChatListener implements Listener{
 		Statement st = null;
 			
 			//Get entrys from table
-			st = ChatFilterMain.mysql.getConnection().createStatement();
+			st = ChatControlMain.mysql.getConnection().createStatement();
 			rs = st.executeQuery("SELECT * FROM censor");
 		
 			
@@ -41,8 +42,17 @@ public class ChatListener implements Listener{
 					
 				}
 			}
-		//give back new massage
-		e.setMessage(message);	
+			message = ChatControlMain.getInstance().getConfig().getString("chat.color") + message;
+			
+		//give back prefix and suffix + message
+		String format = ChatControlMain.getInstance().getConfig().getString("chat.format");
+		format = format.replace("{player}", player.getName());
+		format = format.replace("{suffix}", PermissonsInteract.getSuffix(player));
+		format = format.replace("{prefix}", PermissonsInteract.getPrefix(player));
+		format = format.replace("{msg}", message);
+		format = format.replace("&", "§");
+		e.setFormat(format);
+		
 		
 	}
 	

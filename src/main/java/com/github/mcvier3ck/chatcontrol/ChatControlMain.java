@@ -1,4 +1,4 @@
-package com.github.mcvier3ck.chatfilter;
+package com.github.mcvier3ck.chatcontrol;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,9 +10,9 @@ import com.github.mcvier3ck.utils.MySQL;
 import net.md_5.bungee.api.ChatColor;
 
 
-public class ChatFilterMain extends JavaPlugin{
+public class ChatControlMain extends JavaPlugin{
 
-	public static ChatFilterMain chatfilter;
+	public static ChatControlMain chatfilter;
 	public static MySQL mysql = null;
 	public static String Prefix = ChatColor.DARK_AQUA + "[ChatFilter] ";
 	
@@ -41,7 +41,7 @@ public class ChatFilterMain extends JavaPlugin{
 		pm.registerEvents(new ChatListener(), this);
 		
 		//Init Commands
-		this.getCommand("chatfilter").setExecutor(new Commands());
+		this.getCommand("chatcontrol").setExecutor(new Commands());
 		
 		
 		//Creates MySQL Table if need
@@ -50,7 +50,7 @@ public class ChatFilterMain extends JavaPlugin{
 	
 	
 	
-	public static ChatFilterMain getInstance() {
+	public static ChatControlMain getInstance() {
 		return chatfilter;
 	}
 	
@@ -77,6 +77,9 @@ public class ChatFilterMain extends JavaPlugin{
 		this.getConfig().addDefault("mysql.user", "");
 		this.getConfig().addDefault("mysql.password", "");
 		this.getConfig().addDefault("mysql.database", "");
+		
+		this.getConfig().addDefault("chat.format", "{prefix} {player} {suffix}: {msg}");
+		this.getConfig().addDefault("chat.color", "&f");
 		
 		this.getConfig().options().copyDefaults(true);
 		this.saveConfig();
